@@ -17,4 +17,34 @@ MonoBehaviour:
     type: 2}
   addressableAssetGroupTemplate: {fileID: 11400000, guid: 9c7657978e3dbb646a401f3162b93c54,
     type: 2}
-  groups: []
+  groups:
+  - groupName: Script1
+    assetType: Script
+    pattern: 
+    labels:
+    - Script
+    folders:
+    - folder: {fileID: 102900000, guid: 51dd1bd8ad4befa4480f9d2f9d2732d0, type: 3}
+      pattern: 
+      labels: []
+    - folder: {fileID: 102900000, guid: 5d790d941d90b5246811d1e939c5551f, type: 3}
+      pattern: 
+      labels: []
+  - groupName: Script2
+    assetType: Script
+    pattern: 
+    labels:
+    - Script
+    folders:
+    - folder: {fileID: 102900000, guid: 41d8c6526314a1e429f3d9353cd9998e, type: 3}
+      pattern: 
+      labels: []
+  - groupName: Prefab1
+    assetType: Prefab
+    pattern: 
+    labels:
+    - default
+    folders:
+    - folder: {fileID: 102900000, guid: c241373f9d9e19c4abd4b50ab1675d81, type: 3}
+      pattern: 
+      labels: []

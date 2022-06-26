@@ -49,8 +49,8 @@ namespace CZToolKit.AssetBuilder
             var assetType = assetTypes[index];
             if (assetType.overrideIcon != null)
                 label = EditorGUIUtility.TrTextContent(assetType.name, assetType.overrideIcon);
-            if (label == null && !string.IsNullOrEmpty(assetType.builtIcon))
-                label = EditorGUIUtility.IconContent(assetType.builtIcon, assetType.name);
+            if (label == null && !string.IsNullOrEmpty(assetType.builtInIcon))
+                label = EditorGUIUtility.IconContent(assetType.builtInIcon, assetType.name);
             if (label == null)
                 label = EditorGUIUtility.TrTextContent(assetType.name);
             label.tooltip = assetType.name;
@@ -208,7 +208,7 @@ namespace CZToolKit.AssetBuilder
     public class AssetType
     {
         public string name;
-        public string builtIcon;
+        public string builtInIcon;
         public Texture overrideIcon;
         public string filter;
         public FilterMode filterMode;

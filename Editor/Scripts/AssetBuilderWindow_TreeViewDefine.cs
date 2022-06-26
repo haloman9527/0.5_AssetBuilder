@@ -51,6 +51,7 @@ namespace CZToolKit.AssetBuilder
                 ShowBoder = true;
                 RowHeight = 25;
                 Refresh();
+                this.multiColumnHeader.ResizeToFit();
             }
 
             protected override TreeViewItem BuildRoot()

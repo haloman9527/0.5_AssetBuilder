@@ -14,17 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assetTypes:
   - name: Json
-    builtIcon: TextAsset Icon
+    builtInIcon: TextAsset Icon
     overrideIcon: {fileID: 0}
     filter: t:TextAsset|json
     filterMode: 2
   - name: Prefab
-    builtIcon: Prefab Icon
+    builtInIcon: Prefab Icon
     overrideIcon: {fileID: 0}
     filter: t:Prefab|prefab
     filterMode: 2
   - name: Sound
-    builtIcon: AudioClip Icon
+    builtInIcon: AudioClip Icon
     overrideIcon: {fileID: 0}
     filter: t:Audio
+    filterMode: 0
+  - name: Script
+    builtInIcon: cs Script Icon
+    overrideIcon: {fileID: 0}
+    filter: t:Script
     filterMode: 0
