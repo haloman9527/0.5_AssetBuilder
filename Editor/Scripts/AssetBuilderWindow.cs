@@ -162,7 +162,18 @@ namespace CZToolKit.AssetBuilder
             if (GUI.Button(buildRect, EditorGUIUtility.TrTextContent("Build"), EditorStyles.toolbarDropDown))
             {
                 var menu = new GenericMenu();
-                menu.AddItem(new GUIContent("Build"), false, () =>
+                foreach (var assetType in treeView.Config.resolver.GetAssetTypes())
+                {
+                    menu.AddItem(new GUIContent($"Build/{assetType}"), false, () =>
+                    {
+                        foreach (var group in treeView.Config.Groups)
+                        {
+                            if (group.assetType == assetType)
+                                treeView.Config.BuildGroup(group);
+                        }
+                    });
+                }
+                menu.AddItem(new GUIContent("Build All"), false, () =>
                 {
                     treeView.Config.Build();
                 });
@@ -182,6 +193,20 @@ namespace CZToolKit.AssetBuilder
             {
                 searchText = text;
                 treeView.searchString = searchText;
+            }
+            if (searchField.HasFocus())
+            {
+                if (Event.current.type == EventType.KeyUp)
+                {
+                    switch (Event.current.keyCode)
+                    {
+                        case KeyCode.Return:
+                        case KeyCode.KeypadEnter:
+                            treeView.SetFocusAndEnsureSelectedItem();
+                            Event.current.Use();
+                            break;
+                    }
+                }
             }
 
             EditorGUILayout.EndHorizontal();

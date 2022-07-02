@@ -273,9 +273,9 @@ namespace CZToolKit.AssetBuilder
                 if (item.userData is AssetBuilderConfig.Group group)
                 {
                     Undo.RegisterCompleteObjectUndo(Config, "Rename Group");
-                    var removed = Config.RenameGroup(group, args.newName);
+                    var successed = Config.RenameGroup(group.groupName, args.newName);
                     EditorUtility.SetDirty(Config);
-                    if (removed)
+                    if (successed)
                     {
                         item.displayName = group.groupName;
                         Refresh();
@@ -283,14 +283,49 @@ namespace CZToolKit.AssetBuilder
                 }
             }
 
+            protected override bool CanStartDrag(CanStartDragArgs args)
+            {
+                return true;
+            }
+
+            protected override void SetupDragAndDrop(SetupDragAndDropArgs args)
+            {
+                DragAndDrop.SetGenericData("AAAAA", args.draggedItemIDs);
+                DragAndDrop.StartDrag("AAAAA");
+            }
+
             protected override DragAndDropVisualMode HandleDragAndDrop(DragAndDropArgs args)
             {
+                if (DragAndDrop.GetGenericData("AAAAA") is IList<int> itemIDs)
+                {
+                    if (args.performDrop)
+                    {
+                        if (args.parentItem is CZTreeViewItem treeViewItem && treeViewItem.userData is AssetBuilderConfig.Group group)
+                        {
+                            Undo.RegisterCompleteObjectUndo(Config, "Move Folders");
+                            foreach (var id in itemIDs)
+                            {
+                                if (!(FindItem(id) is FolderTreeViewItem folderItem))
+                                    continue;
+                                if (!(folderItem.userData is AssetBuilderConfig.Folder folder))
+                                    continue;
+                                var oldGroup = (folderItem.parent as CZTreeViewItem).userData as AssetBuilderConfig.Group;
+                                Config.RemoveFolder(oldGroup, folder);
+                                Config.AddFolder(group, folder);
+                                EditorUtility.SetDirty(Config);
+                            }
+                            Refresh();
+                        }
+                    }
+                    return DragAndDropVisualMode.Generic;
+                }
                 if (DragAndDrop.objectReferences.Length > 0)
                 {
                     if (args.performDrop)
                     {
                         if (args.parentItem is CZTreeViewItem treeViewItem && treeViewItem.userData is AssetBuilderConfig.Group group)
                         {
+                            Undo.RegisterCompleteObjectUndo(Config, "Add Folders");
                             foreach (var obj in DragAndDrop.objectReferences)
                             {
                                 if (!AssetDatabase.IsMainAsset(obj))
@@ -298,7 +333,6 @@ namespace CZToolKit.AssetBuilder
                                 string path = AssetDatabase.GetAssetPath(obj);
                                 if (AssetDatabase.IsValidFolder(path))
                                 {
-                                    Undo.RegisterCompleteObjectUndo(Config, "Add Folder");
                                     Config.AddFolder(group, new AssetBuilderConfig.Folder() { folder = obj });
                                     EditorUtility.SetDirty(Config);
                                 }
@@ -309,18 +343,6 @@ namespace CZToolKit.AssetBuilder
                     return DragAndDropVisualMode.Generic;
                 }
                 return base.HandleDragAndDrop(args);
-            }
-
-            public override void OnGUI(Rect rect)
-            {
-                base.OnGUI(rect);
-                var currentEvent = Event.current;
-                if (rect.Contains(currentEvent.mousePosition) && currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
-                {
-                    if (HasSelection())
-                        this.SetSelection(new int[0]);
-                    currentEvent.Use();
-                }
             }
 
             protected override void KeyEvent()
@@ -334,10 +356,12 @@ namespace CZToolKit.AssetBuilder
                         case KeyCode.Delete:
                             {
                                 if (HasSelection())
+                                {
                                     DeleteSelection();
-                                currentEvent.Use();
+                                    currentEvent.Use();
+                                }
+                                break;
                             }
-                            break;
                     }
                 }
             }

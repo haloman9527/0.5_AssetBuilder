@@ -48,7 +48,10 @@ namespace CZToolKit.AssetBuilder
             }
             var assetType = assetTypes[index];
             if (assetType.overrideIcon != null)
-                label = EditorGUIUtility.TrTextContent(assetType.name, assetType.overrideIcon);
+            {
+                label = EditorGUIUtility.IconContent(assetType.name);
+                label.image = assetType.overrideIcon;
+            }
             if (label == null && !string.IsNullOrEmpty(assetType.builtInIcon))
                 label = EditorGUIUtility.IconContent(assetType.builtInIcon, assetType.name);
             if (label == null)

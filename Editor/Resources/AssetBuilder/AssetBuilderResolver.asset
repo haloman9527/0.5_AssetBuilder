@@ -28,8 +28,3 @@ MonoBehaviour:
     overrideIcon: {fileID: 0}
     filter: t:Audio
     filterMode: 0
-  - name: Script
-    builtInIcon: cs Script Icon
-    overrideIcon: {fileID: 0}
-    filter: t:Script
-    filterMode: 0

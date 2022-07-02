@@ -24,29 +24,96 @@ using UnityObject = UnityEngine.Object;
 
 namespace CZToolKit.AssetBuilder
 {
-    public class AssetBuilderConfig : ScriptableObject
+    public partial class AssetBuilderConfig : ScriptableObject
     {
+        #region Define
+        [Serializable]
+        public partial class Group
+        {
+            public string groupName;
+            public string assetType;
+            public string pattern;
+            public List<string> labels = new List<string>();
+            public List<Folder> folders = new List<Folder>();
+        }
+
+        [Serializable]
+        public partial class Folder
+        {
+            public UnityObject folder;
+            public string pattern;
+            public List<string> labels = new List<string>();
+        }
+
+        public enum AssetType
+        {
+            Prefab = 0,
+            AudioClip = 1,
+        }
+        #endregion
+
+        #region Field
         public AssetBuilderResolver resolver;
         public AddressableAssetSettings addressableAssetSettings;
         public AddressableAssetGroupTemplate addressableAssetGroupTemplate;
-        [SerializeField]
-        private List<Group> groups = new List<Group>();
+        [SerializeField] private List<Group> groups = new List<Group>();
+        #endregion
+    }
 
-        public IReadOnlyList<Group> Groups
+    public partial class AssetBuilderConfig
+    {
+        #region Define
+        public partial class Group
         {
-            get => groups;
+            public Group(string groupName, string assetType)
+            {
+                this.groupName = groupName;
+                this.assetType = assetType;
+            }
         }
 
+        public partial class Folder
+        {
+
+        }
+        #endregion
+
+        #region Field
+        [NonSerialized] Dictionary<string, Group> groupsMap;
+        #endregion
+
+        #region Property
+        public IReadOnlyList<Group> Groups
+        {
+            get { return groups; }
+        }
+        #endregion
+
+        #region Unity
+        private void OnEnable()
+        {
+            groupsMap = new Dictionary<string, Group>();
+            foreach (var group in groups)
+            {
+                if (group == null)
+                    continue;
+                groupsMap[group.groupName] = group;
+            }
+        }
+        #endregion
+
+        #region Public
         public bool ContainsGroup(string groupName)
         {
-            return Groups.FirstOrDefault(group => group.groupName == groupName) != null;
+            return groupsMap.ContainsKey(groupName);
         }
 
         public bool AddGroup(Group group)
         {
-            if (ContainsGroup(group.groupName))
+            if (groupsMap.ContainsKey(group.groupName))
                 return false;
             groups.Add(group);
+            groupsMap[group.groupName] = group;
             return true;
         }
 
@@ -55,15 +122,20 @@ namespace CZToolKit.AssetBuilder
             if (!groups.Contains(group))
                 return;
             groups.Remove(group);
+            groupsMap.Remove(group.groupName);
         }
 
-        public bool RenameGroup(Group group, string newName)
+        public bool RenameGroup(string oldName, string newName)
         {
+            if (!groupsMap.TryGetValue(oldName, out var group))
+                return false;
             if (group.groupName == newName)
                 return false;
             if (newName.Contains("/"))
                 return false;
             group.groupName = newName;
+            groupsMap.Remove(oldName);
+            groupsMap[newName] = group;
             return true;
         }
 
@@ -90,9 +162,11 @@ namespace CZToolKit.AssetBuilder
         public bool Clean()
         {
             groups.RemoveAll(item => item == null);
+            groupsMap.Clear();
             foreach (var group in groups)
             {
                 group.folders.RemoveAll(item => (item == null || item.folder == null));
+                groupsMap[group.groupName] = group;
             }
             return true;
         }
@@ -136,7 +210,9 @@ namespace CZToolKit.AssetBuilder
             }
             assetBuffer.Clear();
         }
+        #endregion
 
+        #region Private
         /// <summary> 获取/创建组 </summary>
         private AddressableAssetGroup GetGroup(string groupName)
         {
@@ -178,35 +254,6 @@ namespace CZToolKit.AssetBuilder
             }
             return addressableAssetEntries;
         }
-
-        [Serializable]
-        public class Group
-        {
-            public string groupName;
-            public string assetType;
-            public string pattern;
-            public List<string> labels = new List<string>();
-            public List<Folder> folders = new List<Folder>();
-
-            public Group(string groupName, string assetType)
-            {
-                this.groupName = groupName;
-                this.assetType = assetType;
-            }
-        }
-
-        [Serializable]
-        public class Folder
-        {
-            public UnityObject folder;
-            public string pattern;
-            public List<string> labels = new List<string>();
-        }
-
-        public enum AssetType
-        {
-            Prefab = 0,
-            AudioClip = 1,
-        }
+        #endregion
     }
 }
