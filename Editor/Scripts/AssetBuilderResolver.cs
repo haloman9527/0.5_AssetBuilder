@@ -89,14 +89,14 @@ namespace CZToolKit.AssetBuilder
                             // 文件正则匹配
                             if (!string.IsNullOrEmpty(group.pattern))
                             {
-                                if (!Regex.IsMatch(path, group.pattern))
+                                if (!Regex.IsMatch(assetPath, group.pattern))
                                     continue;
                             }
 
                             // 文件正则匹配
                             if (!string.IsNullOrEmpty(folder.pattern))
                             {
-                                if (!Regex.IsMatch(path, folder.pattern))
+                                if (!Regex.IsMatch(assetPath, folder.pattern))
                                     continue;
                             }
 
@@ -121,14 +121,14 @@ namespace CZToolKit.AssetBuilder
                                 // 文件正则匹配
                                 if (!string.IsNullOrEmpty(group.pattern))
                                 {
-                                    if (!Regex.IsMatch(path, group.pattern))
+                                    if (!Regex.IsMatch(assetPath, group.pattern))
                                         continue;
                                 }
 
                                 // 文件正则匹配
                                 if (!string.IsNullOrEmpty(folder.pattern))
                                 {
-                                    if (!Regex.IsMatch(path, folder.pattern))
+                                    if (!Regex.IsMatch(assetPath, folder.pattern))
                                         continue;
                                 }
 
@@ -164,14 +164,14 @@ namespace CZToolKit.AssetBuilder
                             // 文件正则匹配
                             if (!string.IsNullOrEmpty(group.pattern))
                             {
-                                if (!Regex.IsMatch(path, group.pattern))
+                                if (!Regex.IsMatch(assetPath, group.pattern))
                                     continue;
                             }
 
                             // 文件正则匹配
                             if (!string.IsNullOrEmpty(folder.pattern))
                             {
-                                if (!Regex.IsMatch(path, folder.pattern))
+                                if (!Regex.IsMatch(assetPath, folder.pattern))
                                     continue;
                             }
 

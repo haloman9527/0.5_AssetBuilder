@@ -16,6 +16,8 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEditor.IMGUI.Controls;
+using System.IO;
+using System.Collections.Generic;
 
 namespace CZToolKit.AssetBuilder
 {
@@ -147,7 +149,13 @@ namespace CZToolKit.AssetBuilder
             }
             EditorGUI.EndDisabledGroup();
             GUILayout.FlexibleSpace();
-
+            if (GUILayout.Button(EditorGUIUtility.TrTextContent("?", "文档"), EditorStyles.toolbarButton, GUILayout.Width(25)))
+            {
+                var config = Resources.Load("AssetBuilder/AssetBuilderConfig");
+                var path = AssetDatabase.GetAssetPath(config);
+                var folder = Path.GetDirectoryName(path);
+                Application.OpenURL(Path.Combine(folder, "AssetBuilderDoc.docx"));
+            }
             if (GUILayout.Button(EditorGUIUtility.TrTextContent("Groups"), EditorStyles.toolbarButton))
             {
                 EditorApplication.ExecuteMenuItem("Window/Asset Management/Addressables/Groups");
@@ -166,11 +174,15 @@ namespace CZToolKit.AssetBuilder
                 {
                     menu.AddItem(new GUIContent($"Build/{assetType}"), false, () =>
                     {
+                        var groups = new List<AssetBuilderConfig.Group>();
                         foreach (var group in treeView.Config.Groups)
                         {
                             if (group.assetType == assetType)
-                                treeView.Config.BuildGroup(group);
+                            {
+                                groups.Add(group);
+                            }
                         }
+                        treeView.Config.BuildGroups(groups);
                     });
                 }
                 menu.AddItem(new GUIContent("Build All"), false, () =>

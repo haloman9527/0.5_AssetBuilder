@@ -178,11 +178,23 @@ namespace CZToolKit.AssetBuilder
             {
                 BuildGroup(group, assetBuffer);
             }
+            AssetDatabase.SaveAssets();
+        }
+
+        public void BuildGroups(List<Group> groups)
+        {
+            HashSet<UnityObject> assetBuffer = new HashSet<UnityObject>();
+            foreach (var group in groups)
+            {
+                BuildGroup(group, assetBuffer);
+            }
+            AssetDatabase.SaveAssets();
         }
 
         public void BuildGroup(Group group)
         {
             BuildGroup(group, new HashSet<UnityObject>());
+            AssetDatabase.SaveAssets();
         }
 
         public void BuildGroup(Group group, HashSet<UnityObject> assetBuffer)
@@ -190,6 +202,8 @@ namespace CZToolKit.AssetBuilder
             var addressableGroup = GetGroup(group.groupName);
             foreach (var folder in group.folders)
             {
+                if (null == folder.folder)
+                    continue;
                 string[] guids = AssetDatabase.FindAssets($"t:{group.assetType}", new string[] { AssetDatabase.GetAssetPath(folder.folder) });
                 foreach (var asset in resolver.GetAssets(group, folder))
                 {

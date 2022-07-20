@@ -17,19 +17,4 @@ MonoBehaviour:
     type: 2}
   addressableAssetGroupTemplate: {fileID: 11400000, guid: 9c7657978e3dbb646a401f3162b93c54,
     type: 2}
-  groups:
-  - groupName: New Group(0)
-    assetType: Json
-    pattern: 
-    labels: []
-    folders: []
-  - groupName: New Group(1)
-    assetType: Json
-    pattern: 
-    labels: []
-    folders: []
-  - groupName: New Group(2)
-    assetType: Json
-    pattern: 
-    labels: []
-    folders: []
+  groups: []

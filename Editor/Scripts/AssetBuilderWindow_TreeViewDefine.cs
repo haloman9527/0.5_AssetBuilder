@@ -63,9 +63,11 @@ namespace CZToolKit.AssetBuilder
 
             protected override bool DoesItemMatchSearch(TreeViewItem item, string search)
             {
-                if (item is FolderTreeViewItem folderItem)
-                    return folderItem.path.Contains(search);
-                return base.DoesItemMatchSearch(item, search);
+                if (base.DoesItemMatchSearch(item, search))
+                    return true;
+                if (item.displayName.ToLower().Contains(search.ToLower()))
+                    return true;
+                return false;
             }
 
             public void Sort()
@@ -229,12 +231,14 @@ namespace CZToolKit.AssetBuilder
                 {
                     menu.AddItem(new GUIContent("Build Group"), false, () =>
                     {
+                        var groups = new List<AssetBuilderConfig.Group>();
                         foreach (var selectionID in GetSelection())
                         {
                             var selection = FindItem(selectionID);
                             if (selection.userData is AssetBuilderConfig.Group tempGroup)
-                                Config.BuildGroup(tempGroup);
+                                groups.Add(tempGroup);
                         }
+                        Config.BuildGroups(groups);
                     });
                     menu.AddSeparator("");
                     menu.AddItem(new GUIContent("Rename"), false, () =>
