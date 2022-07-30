@@ -17,4 +17,13 @@ MonoBehaviour:
     type: 2}
   addressableAssetGroupTemplate: {fileID: 11400000, guid: 9c7657978e3dbb646a401f3162b93c54,
     type: 2}
-  groups: []
+  groups:
+  - groupName: TestUI
+    assetType: Prefab
+    pattern: 
+    labels:
+    - TestUI
+    folders:
+    - folder: {fileID: 102900000, guid: 5f1e1ce43144f9644a24d1ecccd60550, type: 3}
+      pattern: 
+      labels: []
