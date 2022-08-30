@@ -141,25 +141,13 @@ namespace CZToolKit.AssetBuilder
                     }
                 case FilterMode.Blend:
                     {
+
                         string path = AssetDatabase.GetAssetPath(folder.folder);
                         string[] patterns = assetType.filter.Split('|');
                         string[] guids = AssetDatabase.FindAssets(patterns[0], new string[] { path });
                         foreach (var guid in guids)
                         {
                             string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-
-                            // 后缀匹配
-                            bool matchedExt = false;
-                            for (int i = 1; i < patterns.Length; i++)
-                            {
-                                if (Path.GetExtension(assetPath).ToLower() == $".{patterns[i]}".ToLower())
-                                {
-                                    matchedExt = true;
-                                    break;
-                                }
-                            }
-                            if (!matchedExt)
-                                continue;
 
                             // 文件正则匹配
                             if (!string.IsNullOrEmpty(group.pattern))
@@ -178,6 +166,35 @@ namespace CZToolKit.AssetBuilder
                             var asset = AssetDatabase.LoadAssetAtPath<UnityObject>(assetPath);
                             if (asset != null)
                                 yield return asset;
+                        }
+
+                        DirectoryInfo directoryInfo = new DirectoryInfo(path);
+                        for (int i = 1; i < patterns.Length; i++)
+                        {
+                            var ext = patterns[i];
+                            FileInfo[] fileInfos = directoryInfo.GetFiles($"*.{ext}", SearchOption.AllDirectories);
+                            foreach (var fileInfo in fileInfos)
+                            {
+                                string assetPath = Util.ConvertToRelativePath(fileInfo.FullName);
+
+                                // 文件正则匹配
+                                if (!string.IsNullOrEmpty(group.pattern))
+                                {
+                                    if (!Regex.IsMatch(assetPath, group.pattern))
+                                        continue;
+                                }
+
+                                // 文件正则匹配
+                                if (!string.IsNullOrEmpty(folder.pattern))
+                                {
+                                    if (!Regex.IsMatch(assetPath, folder.pattern))
+                                        continue;
+                                }
+
+                                var asset = AssetDatabase.LoadAssetAtPath<UnityObject>(assetPath);
+                                if (asset != null)
+                                    yield return asset;
+                            }
                         }
                         break;
                     }
