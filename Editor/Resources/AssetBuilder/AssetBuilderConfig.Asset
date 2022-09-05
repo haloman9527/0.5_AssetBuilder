@@ -27,3 +27,11 @@ MonoBehaviour:
     - folder: {fileID: 102900000, guid: 5f1e1ce43144f9644a24d1ecccd60550, type: 3}
       pattern: 
       labels: []
+  - groupName: TestPrefab
+    assetType: Prefab
+    pattern: 
+    labels: []
+    folders:
+    - folder: {fileID: 102900000, guid: 38a6de97b6a28d84d91ee0cdbdf940b5, type: 3}
+      pattern: 
+      labels: []
