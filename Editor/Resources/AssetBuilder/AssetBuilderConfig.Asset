@@ -24,7 +24,7 @@ MonoBehaviour:
     labels:
     - TestUI
     folders:
-    - folder: {fileID: 102900000, guid: 5f1e1ce43144f9644a24d1ecccd60550, type: 3}
+    - folder: {fileID: 102900000, guid: ecb27bf8d85902942b4500b093bae7b1, type: 3}
       pattern: 
       labels: []
   - groupName: TestPrefab
