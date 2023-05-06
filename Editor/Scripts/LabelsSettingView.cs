@@ -19,7 +19,7 @@ using UnityEditorInternal;
 using System.Collections.Generic;
 using UnityEditor.AddressableAssets.GUI;
 using UnityEditor.AddressableAssets.Settings;
-using CZToolKit.Common.IMGUI;
+using CZToolKit.Common.IMGUI.Controls;
 
 namespace CZToolKit.AssetBuilder
 {
