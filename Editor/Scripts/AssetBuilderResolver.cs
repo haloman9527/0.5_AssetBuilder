@@ -116,7 +116,7 @@ namespace CZToolKit.AssetBuilder
                             FileInfo[] fileInfos = directoryInfo.GetFiles($"*.{ext}", SearchOption.AllDirectories);
                             foreach (var fileInfo in fileInfos)
                             {
-                                string assetPath = Util.ConvertToRelativePath(fileInfo.FullName);
+                                string assetPath = Util_Unity.ConvertToRelativePath(fileInfo.FullName);
 
                                 // 文件正则匹配
                                 if (!string.IsNullOrEmpty(group.pattern))
@@ -175,7 +175,7 @@ namespace CZToolKit.AssetBuilder
                             FileInfo[] fileInfos = directoryInfo.GetFiles($"*.{ext}", SearchOption.AllDirectories);
                             foreach (var fileInfo in fileInfos)
                             {
-                                string assetPath = Util.ConvertToRelativePath(fileInfo.FullName);
+                                string assetPath = Util_Unity.ConvertToRelativePath(fileInfo.FullName);
 
                                 // 文件正则匹配
                                 if (!string.IsNullOrEmpty(group.pattern))
