@@ -13,7 +13,7 @@
  *
  */
 #endregion
-using CZToolKit.Common.Collection;
+using CZToolKit.Common;
 using CZToolKit.Common.IMGUI;
 using System.Collections.Generic;
 using CZToolKit.Common.IMGUI.Controls;
