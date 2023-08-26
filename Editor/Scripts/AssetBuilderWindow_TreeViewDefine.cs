@@ -13,10 +13,9 @@
  *
  */
 #endregion
-using CZToolKit.Common;
-using CZToolKit.Common.IMGUI;
+using CZToolKit;
 using System.Collections.Generic;
-using CZToolKit.Common.IMGUI.Controls;
+using CZToolKitEditor.IMGUI.Controls;
 using UnityEditor;
 using UnityEngine;
 using UnityEditor.IMGUI.Controls;
