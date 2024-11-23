@@ -17,7 +17,7 @@
 // using UnityEngine;
 // using UnityEditor.AddressableAssets.Settings;
 //
-// namespace CZToolKit.AssetBuilder
+// namespace Jiange.AssetBuilder
 // {
 //     public class AssetBuilderSettingView : PopupWindowContent
 //     {

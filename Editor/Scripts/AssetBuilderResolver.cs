@@ -1,4 +1,4 @@
-// using CZToolKit;
+// using Jiange;
 // using System;
 // using System.Collections.Generic;
 // using System.IO;
@@ -8,7 +8,7 @@
 //
 // using UnityObject = UnityEngine.Object;
 //
-// namespace CZToolKit.AssetBuilder
+// namespace Jiange.AssetBuilder
 // {
 //     public partial class AssetBuilderResolver : ScriptableObject
 //     {

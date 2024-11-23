@@ -22,7 +22,7 @@
 //
 // using UnityObject = UnityEngine.Object;
 //
-// namespace CZToolKit.AssetBuilder
+// namespace Jiange.AssetBuilder
 // {
 //     public partial class AssetBuilderConfig : ScriptableObject
 //     {

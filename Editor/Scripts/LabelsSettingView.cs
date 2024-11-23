@@ -19,9 +19,9 @@
 // using System.Collections.Generic;
 // using UnityEditor.AddressableAssets.GUI;
 // using UnityEditor.AddressableAssets.Settings;
-// using CZToolKitEditor.IMGUI.Controls;
+// using JiangeEditor.IMGUI.Controls;
 //
-// namespace CZToolKit.AssetBuilder
+// namespace Jiange.AssetBuilder
 // {
 //     public class LabelsSettingView : PopupWindowContent
 //     {

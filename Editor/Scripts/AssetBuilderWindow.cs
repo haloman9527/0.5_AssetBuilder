@@ -19,7 +19,7 @@
 // using System.IO;
 // using System.Collections.Generic;
 //
-// namespace CZToolKit.AssetBuilder
+// namespace Jiange.AssetBuilder
 // {
 //     public partial class AssetBuilderWindow : EditorWindow
 //     {
@@ -232,7 +232,7 @@
 //         }
 //
 //         #region Static
-//         [MenuItem("Tools/CZToolKit/Asset Builder")]
+//         [MenuItem("Tools/Jiange/Asset Builder")]
 //         public static void Open()
 //         {
 //             GetWindow<AssetBuilderWindow>().Close();
