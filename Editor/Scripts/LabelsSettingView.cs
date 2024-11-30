@@ -19,9 +19,9 @@
 // using System.Collections.Generic;
 // using UnityEditor.AddressableAssets.GUI;
 // using UnityEditor.AddressableAssets.Settings;
-// using JiangeEditor.IMGUI.Controls;
+// using MoyoEditor.IMGUI.Controls;
 //
-// namespace Jiange.AssetBuilder
+// namespace Moyo.AssetBuilder
 // {
 //     public class LabelsSettingView : PopupWindowContent
 //     {

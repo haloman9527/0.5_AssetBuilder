@@ -22,7 +22,7 @@
 //
 // using UnityObject = UnityEngine.Object;
 //
-// namespace Jiange.AssetBuilder
+// namespace Moyo.AssetBuilder
 // {
 //     public partial class AssetBuilderConfig : ScriptableObject
 //     {

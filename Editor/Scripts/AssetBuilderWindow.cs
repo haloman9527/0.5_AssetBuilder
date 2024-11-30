@@ -19,7 +19,7 @@
 // using System.IO;
 // using System.Collections.Generic;
 //
-// namespace Jiange.AssetBuilder
+// namespace Moyo.AssetBuilder
 // {
 //     public partial class AssetBuilderWindow : EditorWindow
 //     {
@@ -232,7 +232,7 @@
 //         }
 //
 //         #region Static
-//         [MenuItem("Tools/Jiange/Asset Builder")]
+//         [MenuItem("Tools/Moyo/Asset Builder")]
 //         public static void Open()
 //         {
 //             GetWindow<AssetBuilderWindow>().Close();

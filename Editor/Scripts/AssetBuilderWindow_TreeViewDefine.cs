@@ -13,14 +13,14 @@
 //  *
 //  */
 // #endregion
-// using Jiange;
+// using Moyo;
 // using System.Collections.Generic;
-// using JiangeEditor.IMGUI.Controls;
+// using MoyoEditor.IMGUI.Controls;
 // using UnityEditor;
 // using UnityEngine;
 // using UnityEditor.IMGUI.Controls;
 //
-// namespace Jiange.AssetBuilder
+// namespace Moyo.AssetBuilder
 // {
 //     public partial class AssetBuilderWindow
 //     {

@@ -1,4 +1,4 @@
-// using Jiange;
+// using Moyo;
 // using System;
 // using System.Collections.Generic;
 // using System.IO;
@@ -8,7 +8,7 @@
 //
 // using UnityObject = UnityEngine.Object;
 //
-// namespace Jiange.AssetBuilder
+// namespace Moyo.AssetBuilder
 // {
 //     public partial class AssetBuilderResolver : ScriptableObject
 //     {
