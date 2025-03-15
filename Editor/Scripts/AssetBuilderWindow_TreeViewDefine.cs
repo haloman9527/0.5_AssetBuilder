@@ -13,14 +13,14 @@
 //  *
 //  */
 // #endregion
-// using Moyo;
+// using Atom;
 // using System.Collections.Generic;
-// using MoyoEditor.IMGUI.Controls;
+// using AtomEditor.IMGUI.Controls;
 // using UnityEditor;
 // using UnityEngine;
 // using UnityEditor.IMGUI.Controls;
 //
-// namespace Moyo.AssetBuilder
+// namespace Atom.AssetBuilder
 // {
 //     public partial class AssetBuilderWindow
 //     {

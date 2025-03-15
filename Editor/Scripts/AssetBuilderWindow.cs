@@ -19,7 +19,7 @@
 // using System.IO;
 // using System.Collections.Generic;
 //
-// namespace Moyo.AssetBuilder
+// namespace Atom.AssetBuilder
 // {
 //     public partial class AssetBuilderWindow : EditorWindow
 //     {
@@ -232,7 +232,7 @@
 //         }
 //
 //         #region Static
-//         [MenuItem("Tools/Moyo/Asset Builder")]
+//         [MenuItem("Tools/Atom/Asset Builder")]
 //         public static void Open()
 //         {
 //             GetWindow<AssetBuilderWindow>().Close();

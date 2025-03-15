@@ -19,9 +19,9 @@
 // using System.Collections.Generic;
 // using UnityEditor.AddressableAssets.GUI;
 // using UnityEditor.AddressableAssets.Settings;
-// using MoyoEditor.IMGUI.Controls;
+// using AtomEditor.IMGUI.Controls;
 //
-// namespace Moyo.AssetBuilder
+// namespace Atom.AssetBuilder
 // {
 //     public class LabelsSettingView : PopupWindowContent
 //     {

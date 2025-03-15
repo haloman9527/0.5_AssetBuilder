@@ -17,7 +17,7 @@
 // using UnityEngine;
 // using UnityEditor.AddressableAssets.Settings;
 //
-// namespace Moyo.AssetBuilder
+// namespace Atom.AssetBuilder
 // {
 //     public class AssetBuilderSettingView : PopupWindowContent
 //     {

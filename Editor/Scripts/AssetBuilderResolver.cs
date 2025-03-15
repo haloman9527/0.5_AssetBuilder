@@ -1,4 +1,4 @@
-// using Moyo;
+// using Atom;
 // using System;
 // using System.Collections.Generic;
 // using System.IO;
@@ -8,7 +8,7 @@
 //
 // using UnityObject = UnityEngine.Object;
 //
-// namespace Moyo.AssetBuilder
+// namespace Atom.AssetBuilder
 // {
 //     public partial class AssetBuilderResolver : ScriptableObject
 //     {
